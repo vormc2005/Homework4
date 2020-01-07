@@ -22,7 +22,7 @@
         title: "Which built-in method returns the length of the string?",
         choices:["length","size", "index", "none of the above"],
         answer: "length"
-    },
+    }
 
     //  {
     //     title:"Which of the following function of String object returns a string representing the specified object?",

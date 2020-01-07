@@ -21,7 +21,7 @@ startEl.addEventListener("click", function(){
     
    console.log(startEl);
     
-    loadquestion();
+    // loadquestion();
 
     // startEl.innerHTML = "";
    
@@ -32,14 +32,15 @@ startEl.addEventListener("click", function(){
 
 var loadquestion = function(){
     for (var i=0; i < questions.length; i++){
-        console.log(questions[i].title)
-        let currentQuestion = question[i].title
-        if (currentQuestion < questtions.length){
-            startEl.textContent = currentQuestion;
+        console.log(questions[i].title);
+        let currentQuestion = questions[i].title
+        if (currentQuestion < questions.length){
+            questionEl.textContent = currentQuestion;
         }
         else{ alert('Game is over!')};
        
     };
+    
 
 
 
