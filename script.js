@@ -1,12 +1,7 @@
 startEl = document.getElementById("startQuiz");
 questionEl = document.getElementById("question");
 // answerbuttonEl = document.getElementById("answerbutton");
-btn1El=document.getElementById("btn1");
-btn2El=document.getElementById("btn2");
-btn3El=document.getElementById("btn3");
-btn4El=document.getElementById("btn4");
-timeEl=document.getElementById("timer");
-
+buttonEl = 
 
 // timer function///////////
 
@@ -19,9 +14,9 @@ timeEl=document.getElementById("timer");
 
 startEl.addEventListener("click", function(){
     
-   console.log(startEl);
+ 
     
-    // loadquestion();
+    loadquestion();
 
     // startEl.innerHTML = "";
    
@@ -31,14 +26,20 @@ startEl.addEventListener("click", function(){
 // start===================start===========//
 
 var loadquestion = function(){
-    for (var i=0; i < questions.length; i++){
+    for (var i=0; i < questions.length-1; i++){
         console.log(questions[i].title);
         let currentQuestion = questions[i].title
         if (currentQuestion < questions.length){
+            questionEl.textContent = "";
             questionEl.textContent = currentQuestion;
+
+            var btn = document.createElement("button");
+
+            
         }
-        else{ alert('Game is over!')};
+        // else{ alert('Game is over!')};
        
+
     };
     
 
