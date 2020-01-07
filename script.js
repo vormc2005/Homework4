@@ -1,75 +1,79 @@
-startEl = document.getElementById("startQuiz");
-questionEl = document.getElementById("question");
+var startEl = document.getElementById("startQuiz");
+var questionEl = document.getElementById("question");
 // answerbuttonEl = document.getElementById("answerbutton");
-buttonEl = 
-
-// timer function///////////
-
-
-  
-
- 
-
-// add listener to start quiz button//
-
-startEl.addEventListener("click", function(){
-    
- 
-    
-    loadquestion();
-
-    // startEl.innerHTML = "";
-   
-})
+var buttonEl = document.getElementById("answerbutton");
+var timerDisplay = document.getElementById("timer");
+var endgameDiv = document.getElementById("endgame");
 
 
-// start===================start===========//
+var timerValue = 75;
+var currQuestionIdx = 0;
+var currTimer;
+var currScore = 0;
 
-var loadquestion = function(){
-    for (var i=0; i < questions.length-1; i++){
-        console.log(questions[i].title);
-        let currentQuestion = questions[i].title
-        if (currentQuestion < questions.length){
-            questionEl.textContent = "";
-            questionEl.textContent = currentQuestion;
-
-            var btn = document.createElement("button");
-
-            
-        }
-        // else{ alert('Game is over!')};
-       
-
-    };
-    
-
-
-
-// var secondsleft = 75;
-
-// var timerfunc = setInterval (function(){
-    
-//     secondsleft--;          
-//     timeEl.textContent = secondsleft;
- 
-// console.log(timerfunc);
-//     if(secondsleft===0){
-//         clearInterval(timerfunc);
-
-//     }
-//   } ,1000);
-
-
-// checking for accuracy////////////
-
-
+var startGame = function(){
+    displayQuestion();
+    runTimer();
 }
 
+var endGame = function(){
+    clearInterval(currTimer);
+
+    
+}
+
+var updateScore = function(){
+    currScore = currScore + timerValue;
+}
+
+var runTimer = function(){
+    currTimer = setInterval(function(){
+        timerValue--;
+        timerDisplay.textContent = timerValue;
+        if( timerValue === 0){
+            endGame();
+        }
+    }, 1000);
+}
+
+var displayQuestion = function(){
+    if( currQuestionIdx < questions.length ){
+        var currQuestion = questions[currQuestionIdx];
+        questionEl.textContent = currQuestion.title;
+        for(var i=0; i<currQuestion.choices.length; i++){
+            var choice = currQuestion.choices[i];
+            console.log(choice);
+            var btn = document.createElement("button");
+            btn.textContent = choice;
+            btn.classList.add("answer-btn");
+            buttonEl.appendChild(btn);
+        }
+    } else {
+        endGame();
+    }
+}
+
+// add listener to start quiz button//
+var startBtn = document.getElementById("startQuiz");
+startBtn.addEventListener("click", function(event){
+    event.preventDefault();
+    startGame();
+});
+
+document.addEventListener("click", function(event){
+    event.preventDefault();
+   if( event.target.matches("button") && event.target.classList.contains("answer-btn") ){
+       console.log(event.target.textContent);
+       if( event.target.textContent === questions[currQuestionIdx].answer ){
+           updateScore();
+       }
+       currQuestionIdx++;
+       displayQuestion();
+   }
+});
 
 
-       
 
-  
        
       
 
