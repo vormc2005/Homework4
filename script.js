@@ -1,3 +1,7 @@
+// I had trouble of getting rid of answer buttons that were cowding the screen after each question. 
+// Also i have trouble with recording a score. I think I can figure these issues out if I have more time.
+
+
 var startEl = document.getElementById("startQuiz");
 var questionEl = document.getElementById("question");
 // answerbuttonEl = document.getElementById("answerbutton");
@@ -11,6 +15,7 @@ var currQuestionIdx = 0;
 var currTimer;
 var currScore = 0;
 
+
 var startGame = function(){
     displayQuestion();
     runTimer();
@@ -18,12 +23,24 @@ var startGame = function(){
 
 var endGame = function(){
     clearInterval(currTimer);
+    var endinput = document.createElement("INPUT");
+    endinput.setAttribute("type", "text");
+    endinput.setAttribute("value","Your Initials");
+    endgameDiv.appendChild(endinput);
+    submit();
+    console.log(endGame)
+}
 
-    
+var submit = function(){
+   var sbmt = document.createElement("button");
+    sbmt.innerHTML = "Submit";
+    sbmt.classList.add("record");
+    document.body.appendChild(sbmt);
 }
 
 var updateScore = function(){
     currScore = currScore + timerValue;
+    localStorage.setItem("currScore", score);
 }
 
 var runTimer = function(){
@@ -37,6 +54,7 @@ var runTimer = function(){
 }
 
 var displayQuestion = function(){
+    
     if( currQuestionIdx < questions.length ){
         var currQuestion = questions[currQuestionIdx];
         questionEl.textContent = currQuestion.title;
@@ -62,11 +80,33 @@ startBtn.addEventListener("click", function(event){
 
 document.addEventListener("click", function(event){
     event.preventDefault();
+  
+   if( event.target.matches("button") && event.target.classList.contains("Submit") ){
+       console.log(event.target.textContent);
+       localStorage.setItem("currScore", score);
+       }
+       
+      
+   
+});  
+
+
+
+
+    
+
+document.addEventListener("click", function(event){
+    event.preventDefault();
+  
    if( event.target.matches("button") && event.target.classList.contains("answer-btn") ){
        console.log(event.target.textContent);
        if( event.target.textContent === questions[currQuestionIdx].answer ){
+           
            updateScore();
+
+           
        }
+       
        currQuestionIdx++;
        displayQuestion();
    }
