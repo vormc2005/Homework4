@@ -78,17 +78,7 @@ startBtn.addEventListener("click", function(event){
     startGame();
 });
 
-document.addEventListener("click", function(event){
-    event.preventDefault();
-  
-   if( event.target.matches("button") && event.target.classList.contains("Submit") ){
-       console.log(event.target.textContent);
-       localStorage.setItem("currScore", score);
-       }
-       
-      
-   
-});  
+
 
 
 
