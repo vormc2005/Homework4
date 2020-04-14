@@ -17,7 +17,7 @@ body {
 
 #question{
     padding: 20px;
-    margin-bottom: 200px;
+    /* margin-bottom: 100px; */
     text-align: center;
     font-size: larger;
 }
@@ -25,14 +25,20 @@ body {
 
     background-color:#E6E1E4;
     padding: 50px;
-    height:auto;
-    width:900px
+    height:80%;
+    width:70%;
 
 }
+
+#initialsInput{
+    /* margin-top: 0; */
+    color:black;
+} 
 #timer{
 
-    position: absolute;
-    margin: 0px;
+    /* position: absolute; */
+    margin-bottom: 70px;
+    margin-left: 45%;
 }
 
 #startQuiz{
@@ -48,15 +54,16 @@ body {
     margin-bottom: 20px;
     background-color: crimson;
     height: 100px;
-    width: 150px;
+    width: 170px;
     font-size: larger;
     margin-left: 5%;
+    display: inline-block;
     
 }
 #endgame{
-    position: absolute;
+    /* position: absolute; */
     border-radius: 10px;
-    margin-top: -100px;
+    margin-bottom: 150px;
     margin-left: 35%;
    
 

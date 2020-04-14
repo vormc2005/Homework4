@@ -16,9 +16,10 @@ var currTimer;
 var currScore = 0;
 
 
-var startGame = function(){
+var startGame = function(){  
     displayQuestion();
     runTimer();
+    document.getElementById("startQuiz").style.display="none"
 }
 
 var endGame = function(){
@@ -26,21 +27,31 @@ var endGame = function(){
     var endinput = document.createElement("INPUT");
     endinput.setAttribute("type", "text");
     endinput.setAttribute("value","Your Initials");
+    endinput.setAttribute("id", "initialsInput")
+    // endinput.add("initialsInput")
     endgameDiv.appendChild(endinput);
-    submit();
+    submit();//needs some work
     console.log(endGame)
 }
 
-var submit = function(){
-   var sbmt = document.createElement("button");
+
+/*Need to get it to sum=bmit
+ information to a score board. Add event lstener*/
+
+//Dynamically create button
+    var submit = function(){
+    var sbmt = document.createElement("button");
     sbmt.innerHTML = "Submit";
     sbmt.classList.add("record");
-    document.body.appendChild(sbmt);
+    endgameDiv.appendChild(sbmt);
+    
 }
 
 var updateScore = function(){
     currScore = currScore + timerValue;
-    localStorage.setItem("currScore", score);
+    //need to use this code upon submission
+    // localStorage.setItem("Score", currScore);
+    console.log(currScore)
 }
 
 var runTimer = function(){
@@ -54,8 +65,9 @@ var runTimer = function(){
 }
 
 var displayQuestion = function(){
-    
+        
     if( currQuestionIdx < questions.length ){
+        buttonEl.innerHTML = "";
         var currQuestion = questions[currQuestionIdx];
         questionEl.textContent = currQuestion.title;
         for(var i=0; i<currQuestion.choices.length; i++){
@@ -77,11 +89,6 @@ startBtn.addEventListener("click", function(event){
     event.preventDefault();
     startGame();
 });
-
-
-
-
-
 
     
 
